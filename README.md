@@ -25,15 +25,3 @@ Authentication and password hashing are implemented for secure user management.
 
 ---
 
-## Installation & Setup
-
-### Prerequisites
-- Node.js (>= 14)
-- MongoDB installed locally or MongoDB Atlas
-
-### Steps
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/<your-username>/express-blog-app.git
-   cd express-blog-app
-
