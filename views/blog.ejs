@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/head') %>
+        <title>
+            <%= blog.title %> - Blog
+        </title>
+</head>
+
+<body>
+    <%- include('partials/nav') %>
+        <div class="container mt-4">
+            <h1>
+                <%= blog.title %>
+            </h1>
+            <img src="<%= blog.coverImageURL %>" alt="<%= blog.title %>" width="700">
+            <p class="mt-4"><%- blog.body %></p>
+        </div>
+        <div class="container mt-4 d-flex align-items-center">
+            <img src="<%= blog.createdBy.profileImageURL || '/images/default.png' %>"
+                alt="<%= blog.createdBy.fullName %>" width="50px" class="rounded-circle me-3">
+            <span>
+                <%= blog.createdBy.fullName %>
+            </span>
+        </div>
+
+        <div class="container mt-3">
+            <h2>Comments(<%= comments.length %>)</h2>
+            <% if (locals.user) { %>
+                <form action="/blog/comment/<%= blog._id %>" method="post">
+                    <div class="mb-3">
+                        <input type="text" name="content" class="form-control" placeholder="Enter Your Comment">
+                        <button class="btn btn-sn btn-primary" type="submit">Add</button>
+                    </div>
+                </form>
+                <% } %>
+
+                    <div class="mt-3">
+                        <% comments.forEach(comment=> { %>
+                            <div class="d-flex align-items-center mb-2">
+                                <img src="<%= comment.createdBy.profileImageURL || '/images/default.png' %>"
+                                    alt="<%= comment.createdBy.fullName %>" width="40" class="rounded-circle me-2">
+                                <strong>
+                                    <%= comment.createdBy.fullName %>
+                                </strong>
+                            </div>
+                            <p class="ms-5">
+                                <%= comment.content %>
+                            </p>
+                            <% }) %>
+                    </div>
+        </div>
+        <%- include('partials/script') %>
+</body>
+
+</html>

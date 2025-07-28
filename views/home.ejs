@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('partials/head') %>
+  <title>HomePage</title>
+  <style>
+    .card-img-top {
+      height: 200px;       /* fix height for all images */
+      object-fit: cover;   /* crop and center image */
+    }
+  </style>
+</head>
+
+<body>
+  <%- include('partials/nav') %>
+  <div class="container mt-3">
+    <div class="row">
+      <% blogs.forEach(blog => { %>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100 shadow-sm">
+            <img src="<%= blog.coverImageURL %>" class="card-img-top" alt="<%= blog.title %>">
+            <div class="card-body">
+              <h5 class="card-title"><%= blog.title %></h5>
+              <a href="/blog/<%= blog._id %>" class="btn btn-primary">View</a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+  <%- include('partials/script') %>
+</body>
+</html>
